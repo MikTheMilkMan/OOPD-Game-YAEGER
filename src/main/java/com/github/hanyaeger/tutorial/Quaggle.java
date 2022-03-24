@@ -1,6 +1,9 @@
 package com.github.hanyaeger.tutorial;
 
+import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
+import com.github.hanyaeger.tutorial.GameLevel.GameLevel;
+import com.github.hanyaeger.tutorial.MainMenu.MainMenu;
 
 public class Quaggle extends YaegerGame {
     public static void main(String[] args) {
@@ -9,11 +12,13 @@ public class Quaggle extends YaegerGame {
 
     @Override
     public void setupGame() {
-
+        setGameTitle("Quaggle");
+        setSize(new Size(800, 600));
     }
 
     @Override
     public void setupScenes() {
-
+        addScene(0, new MainMenu(this));
+        addScene(1, new GameLevel(this));
     }
 }

@@ -7,13 +7,14 @@
  * are not exported and can not be used from outside this module. Their JavaDoc is indirectly accessible, when viewing
  * the JavaDoc of the external API.
  */
-module waggle {
+module Quaggle {
     requires  hanyaeger;
 
     exports com.github.hanyaeger.tutorial;
+    exports com.github.hanyaeger.tutorial.MainMenu;
 
     opens audio;
     opens backgrounds;
-    opens sprites;
+//    opens sprites;
 
 }
