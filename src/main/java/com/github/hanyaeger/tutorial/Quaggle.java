@@ -2,8 +2,8 @@ package com.github.hanyaeger.tutorial;
 
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
-import com.github.hanyaeger.tutorial.GameLevel.GameLevel;
-import com.github.hanyaeger.tutorial.MainMenu.MainMenu;
+import com.github.hanyaeger.tutorial.Scenes.GameLevel;
+import com.github.hanyaeger.tutorial.Scenes.MainMenu;
 
 public class Quaggle extends YaegerGame {
     public static void main(String[] args) {

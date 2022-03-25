@@ -15,6 +15,8 @@ module Quaggle {
 
     opens audio;
     opens backgrounds;
+    exports com.github.hanyaeger.tutorial.Scenes;
+    exports com.github.hanyaeger.tutorial.Buttons;
 //    opens sprites;
 
 }

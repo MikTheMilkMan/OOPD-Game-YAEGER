@@ -1,4 +1,4 @@
-package com.github.hanyaeger.tutorial.GameLevel;
+package com.github.hanyaeger.tutorial.Scenes;
 
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.tutorial.Quaggle;

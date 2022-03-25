@@ -1,7 +1,6 @@
-package com.github.hanyaeger.tutorial.GameLevel;
+package com.github.hanyaeger.tutorial.Buttons;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.tutorial.Button;
 import com.github.hanyaeger.tutorial.Quaggle;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;

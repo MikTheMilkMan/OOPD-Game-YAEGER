@@ -1,11 +1,12 @@
-package com.github.hanyaeger.tutorial.MainMenu;
+package com.github.hanyaeger.tutorial.Scenes;
 
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.StaticScene;
+import com.github.hanyaeger.tutorial.Buttons.StartButton;
 import com.github.hanyaeger.tutorial.Quaggle;
-import com.github.hanyaeger.tutorial.QuitButton;
+import com.github.hanyaeger.tutorial.Buttons.QuitButton;
 
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
