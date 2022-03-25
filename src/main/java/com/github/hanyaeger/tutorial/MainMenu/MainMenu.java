@@ -5,6 +5,8 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.StaticScene;
 import com.github.hanyaeger.tutorial.Quaggle;
+import com.github.hanyaeger.tutorial.QuitButton;
+
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -18,7 +20,14 @@ public class MainMenu extends StaticScene {
     @Override
     public void setupScene() {
         setBackgroundAudio("audio/clown_music.mp3");
+
+        //DELETE THIS WHEN TURNING IN PROJECT
         setBackgroundAudioVolume(0.1);
+        //PLEASE DO NOT FORGET TO DELETE THIS WHEN TURNING IN PROJECT
+        //I BEG OF YOU
+        //P L E A S E
+        //thanks
+
         setBackgroundImage("backgrounds/MainMenuBackground.png");
     }
 
@@ -29,7 +38,9 @@ public class MainMenu extends StaticScene {
         mainMenuText.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 80));
         addEntity(mainMenuText);
 
-        addEntity(new StartButton(new Coordinate2D(getWidth() / 2, getHeight() / 2), quaggle, "Start", 0));
+        addEntity(new StartButton(new Coordinate2D(getWidth() / 2, getHeight() / 2), quaggle, "Start"));
+        addEntity(new QuitButton(new Coordinate2D(getWidth() / 2, (getHeight() / 4) * 3), quaggle, "Quit"));
+
     }
 }
 

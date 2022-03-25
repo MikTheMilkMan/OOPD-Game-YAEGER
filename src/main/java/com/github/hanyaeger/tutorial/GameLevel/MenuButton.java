@@ -1,25 +1,14 @@
-package com.github.hanyaeger.tutorial.MainMenu;
+package com.github.hanyaeger.tutorial.GameLevel;
 
-import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.tutorial.Button;
 import com.github.hanyaeger.tutorial.Quaggle;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
-public class StartButton extends Button {
-    private Quaggle quaggle;
-
-    public StartButton(Coordinate2D initialLocation, Quaggle quaggle, String caption) {
+public class MenuButton extends Button {
+    public MenuButton (Coordinate2D initialLocation, Quaggle quaggle, String caption){
         super(initialLocation, quaggle, caption);
-        this.quaggle = quaggle;
-
-        setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        setFill(Color.PINK);
-        setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 30));
     }
 
     @Override
