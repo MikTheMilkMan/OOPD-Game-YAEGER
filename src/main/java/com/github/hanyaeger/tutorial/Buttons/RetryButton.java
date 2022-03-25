@@ -4,8 +4,8 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.tutorial.Quaggle;
 import javafx.scene.input.MouseButton;
 
-public class TitleMenuButton extends Button{
-    public TitleMenuButton(Coordinate2D initialLocation, Quaggle quaggle, String caption) {
+public class RetryButton extends Button {
+    public RetryButton(Coordinate2D initialLocation, Quaggle quaggle, String caption) {
         super(initialLocation, quaggle, caption);
     }
 
