@@ -5,8 +5,8 @@ import com.github.hanyaeger.tutorial.Quaggle;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 
-public class MenuButton extends Button {
-    public MenuButton (Coordinate2D initialLocation, Quaggle quaggle, String caption){
+public class PauseMenuButton extends Button {
+    public PauseMenuButton(Coordinate2D initialLocation, Quaggle quaggle, String caption){
         super(initialLocation, quaggle, caption);
     }
 

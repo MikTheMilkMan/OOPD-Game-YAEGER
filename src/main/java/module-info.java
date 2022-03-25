@@ -11,12 +11,12 @@ module Quaggle {
     requires  hanyaeger;
 
     exports com.github.hanyaeger.tutorial;
-    exports com.github.hanyaeger.tutorial.MainMenu;
 
     opens audio;
     opens backgrounds;
-    exports com.github.hanyaeger.tutorial.Scenes;
-    exports com.github.hanyaeger.tutorial.Buttons;
+//    exports com.github.hanyaeger.tutorial.Scenes;
+//    exports com.github.hanyaeger.tutorial.Buttons;
+//    exports com.github.hanyaeger.tutorial.GameLevelComponents.Pegs;
 //    opens sprites;
 
 }
