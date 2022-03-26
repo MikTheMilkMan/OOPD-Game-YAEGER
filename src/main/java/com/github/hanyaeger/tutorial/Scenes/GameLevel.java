@@ -9,17 +9,49 @@ import com.github.hanyaeger.tutorial.GameLevelComponents.GameLevelTexts.CurrentS
 
 
 public class GameLevel extends DynamicScene implements TileMapContainer {
-    private Quaggle quaggle;
-    private int currentScore = 0;
+    private final Quaggle quaggle;
+    private final int[][] Level1 = {
+            {1, 1},
+            {1, 1}
+    };
 
-    private int[][] Level1;
-    private int[][] Level2;
-    private int[][] Level3;
-    private int[][] Level4;
-    private int[][] Level5;
+    private final int[][] Level2 = {
+            {2, 2},
+            {2, 2}
+    };
 
-    public GameLevel(Quaggle quaggle){
+    private final int[][] Level3 = {
+            {3, 3},
+            {3, 3}
+    };
+    private final int[][] Level4 = {
+            {4, 4},
+            {4, 4}
+    };
+
+
+    private final int[][] Level5 = {
+            {5, 5},
+            {5, 5}
+    };
+
+    public int[][] currentLevel;
+    public int currentScore = 0;
+
+    public GameLevel(Quaggle quaggle, int whichLevel){
         this.quaggle = quaggle;
+        if (whichLevel == 1){
+            currentLevel = Level1;
+        } else if (whichLevel == 2){
+            currentLevel = Level2;
+        } else if (whichLevel == 3){
+            currentLevel = Level3;
+        } else if (whichLevel == 4){
+            currentLevel = Level4;
+        } else if (whichLevel == 5){
+            currentLevel = Level5;
+        }
+
     }
 
     @Override
@@ -38,6 +70,6 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
 
     @Override
     public void setupTileMaps() {
-        
+
     }
 }
