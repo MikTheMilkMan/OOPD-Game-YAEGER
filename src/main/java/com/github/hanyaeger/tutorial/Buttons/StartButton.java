@@ -12,8 +12,8 @@ import javafx.scene.text.FontWeight;
 public class StartButton extends Button {
     private Quaggle quaggle;
 
-    public StartButton(Coordinate2D initialLocation, Quaggle quaggle, String caption) {
-        super(initialLocation, quaggle, caption);
+    public StartButton(Coordinate2D initialLocation, Quaggle quaggle) {
+        super(initialLocation, quaggle, "Start Game");
         this.quaggle = quaggle;
 
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
