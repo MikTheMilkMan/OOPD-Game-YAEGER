@@ -12,6 +12,4 @@ public class HeaderText extends TextEntity {
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
         setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 80));
     }
-
-
 }

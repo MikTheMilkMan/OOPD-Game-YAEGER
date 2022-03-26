@@ -7,6 +7,7 @@ import com.github.hanyaeger.api.scenes.StaticScene;
 import com.github.hanyaeger.tutorial.Buttons.QuitButton;
 import com.github.hanyaeger.tutorial.Buttons.TitleMenuButton;
 import com.github.hanyaeger.tutorial.Quaggle;
+import com.github.hanyaeger.tutorial.Texts.HeaderText;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -21,26 +22,23 @@ public class GameOver extends StaticScene {
     @Override
     public void setupScene() {
         setBackgroundImage("backgrounds/MainMenuBackground.png");
-
     }
 
     @Override
     public void setupEntities() {
-        var gameOverText = new TextEntity(new Coordinate2D(getWidth() / 2, (getHeight() / 8) * 2), "Congratulations!\nYou've beaten every level!");
-        gameOverText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        gameOverText.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 65));
-        addEntity(gameOverText);
+        //Headertext
+        addEntity(new HeaderText(new Coordinate2D(getWidth() / 2, (getHeight() / 8) * 2), "Congratulations!"));
 
-//        var titleMenuButton = new TitleMenuButton(new Coordinate2D(getWidth() / 2, (getHeight() / 5) * 3), quaggle, "TitleMenu");
-//        titleMenuButton.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-//        titleMenuButton.setFill(Color.PINK);
-//        titleMenuButton.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 30));
-//        addEntity(titleMenuButton);
-//
-//        var quitButton = new QuitButton(new Coordinate2D(getWidth() / 2, (getHeight() / 5) * 4), quaggle, "Quit");
-//        quitButton.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-//        quitButton.setFill(Color.PINK);
-//        quitButton.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 30));
-//        addEntity(quitButton);
+        //Subtext1 for header, "1" is added to the name in case more subtexts get added
+        var gameOverSubtext1 = new TextEntity(new Coordinate2D(getWidth() / 2, (getHeight() / 8) * 3), "You've beaten every level!");
+        gameOverSubtext1.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        gameOverSubtext1.setFont(Font.font("Comic Sans MS", 40));
+        addEntity(gameOverSubtext1);
+
+        //Button to go to the title menu
+        addEntity(new TitleMenuButton(new Coordinate2D(getWidth() / 2, (getHeight() / 5) * 3), quaggle));
+
+        //Button to quit the game
+        addEntity(new QuitButton(new Coordinate2D(getWidth() / 2, (getHeight() / 5) * 4), quaggle));
     }
 }
