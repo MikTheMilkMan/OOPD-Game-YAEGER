@@ -1,22 +1,47 @@
 package com.github.hanyaeger.tutorial.Scenes;
 
+import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.tutorial.GameLevelComponents.GameLevelTexts.HighScoreText;
 import com.github.hanyaeger.tutorial.GameLevelComponents.PegTileMap;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.BonusCirclePeg;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.CirclePeg;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.PowerupCirclePeg;
+import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.*;
+import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.Peg;
+import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.RectanglePegs.*;
 import com.github.hanyaeger.tutorial.Quaggle;
 import com.github.hanyaeger.tutorial.GameLevelComponents.GameLevelTexts.CurrentScoreText;
+import javafx.stage.PopupWindow;
 
 
 public class GameLevel extends DynamicScene implements TileMapContainer {
     private final Quaggle quaggle;
-    private final int[][] Level1 = {
+
+    private final int[][] testLevel = {
             {1, 1},
-            {1, 1}
+            {2, 2},
+            {5, 5},
+            {6, 6}
+    };
+
+    private final int[][] Level1 = {
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0},
+            {0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 3, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0},
+            {3, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 3, 0, 1},
+            {0, 0, 2, 4, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3, 0, 4, 0, 0, 0},
+            {1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 1, 0, 3, 0},
+            {2, 3, 1, 0, 0, 2, 0, 0, 0, 0, 3, 1, 0, 2, 0, 0, 0, 1, 4},
     };
 
     private final int[][] Level2 = {
@@ -38,14 +63,10 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
             {5, 5}
     };
 
-    private BonusCirclePeg tileMapEntityBonusCircle = new BonusCirclePeg(new Coordinate2D(-100, -100), "sprites/BonusCirclePeg.png", 9999, this);
-    private PowerupCirclePeg tileMapEntityPowerupCircle = new PowerupCirclePeg(new Coordinate2D(-100, -100), "sprites/PowerupCirclePeg.png", 99999, this);
 
-    private CirclePeg[] circlePegs = {tileMapEntityBonusCircle, tileMapEntityPowerupCircle};
 
     public int[][] currentLevel;
     public int currentScore = 0;
-
 
 
     public GameLevel(Quaggle quaggle, int whichLevel) {
@@ -61,12 +82,16 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
         } else if (whichLevel == 5) {
             currentLevel = Level5;
         }
+    }
 
+    @Override
+    public void setupTileMaps() {
+        addTileMap(new PegTileMap(testLevel));
+//        addTileMap(new PegTileMap(Level2));
     }
 
     @Override
     public void setupScene() {
-
     }
 
     @Override
@@ -76,10 +101,5 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
 
         //TextEntity that shows the current Highscore
         addEntity(new HighScoreText(new Coordinate2D(700, 40), "Highscore"));
-    }
-
-    @Override
-    public void setupTileMaps() {
-        addTileMap(new PegTileMap(currentLevel, circlePegs));
     }
 }

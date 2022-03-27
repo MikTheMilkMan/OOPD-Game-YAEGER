@@ -20,16 +20,16 @@ public class Quaggle extends YaegerGame {
     @Override
     public void setupScenes() {
         //Adds a MainMenu scene
-        addScene(0, new MainMenu(this));
+//        addScene(0, new MainMenu(this));
 
         //Adds all GameLevels
         addScene(1, new GameLevel(this, 1));
-        addScene(2, new GameLevel(this, 2));
-        addScene(3, new GameLevel(this, 3));
-        addScene(4, new GameLevel(this, 4));
-        addScene(5, new GameLevel(this, 5));
-
-        //Adds a GameOver scene
-        addScene(6, new GameOver(this));
+//        addScene(2, new GameLevel(this, 2));
+//        addScene(3, new GameLevel(this, 3));
+//        addScene(4, new GameLevel(this, 4));
+//        addScene(5, new GameLevel(this, 5));
+//
+//        //Adds a GameOver scene
+//        addScene(6, new GameOver(this));
     }
 }

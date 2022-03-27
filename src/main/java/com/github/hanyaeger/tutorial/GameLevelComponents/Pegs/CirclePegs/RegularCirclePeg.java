@@ -1,24 +1,18 @@
 package com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.RectanglePegs.RectanglePeg;
 import com.github.hanyaeger.tutorial.Scenes.GameLevel;
 
 public class RegularCirclePeg extends CirclePeg {
-    private GameLevel gameLevel;
-    public String spriteImagePath;
-    public int entityID;
-
-    public RegularCirclePeg(Coordinate2D initialLocation, String spriteImagePath, int entityID, GameLevel gameLevel) {
-        super(initialLocation, spriteImagePath, entityID, gameLevel);
-        this.spriteImagePath = spriteImagePath;
-        this.entityID = entityID;
-        this.gameLevel = gameLevel;
+    public RegularCirclePeg(Coordinate2D initialLocation, Size size, String text) {
+        super(text, initialLocation, size);
     }
 
     @Override
     public void onCollision(Collider collider) {
-        gameLevel.currentScore += pointsForPeg;
+
     }
 }

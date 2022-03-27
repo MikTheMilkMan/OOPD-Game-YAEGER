@@ -14,9 +14,19 @@ module Quaggle {
 
     opens audio;
     opens backgrounds;
-//    exports com.github.hanyaeger.tutorial.Scenes;
-//    exports com.github.hanyaeger.tutorial.Buttons;
-//    exports com.github.hanyaeger.tutorial.GameLevelComponents.Pegs;
-//    opens sprites;
+    opens sprites;
+
+    exports com.github.hanyaeger.tutorial.Buttons;
+    exports com.github.hanyaeger.tutorial.GameLevelComponents;
+    exports com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.RectanglePegs;
+    exports com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs;
+    exports com.github.hanyaeger.tutorial.GameLevelComponents.Powerups;
+    exports com.github.hanyaeger.tutorial.GameLevelComponents.GameLevelTexts;
+    exports com.github.hanyaeger.tutorial.Scenes;
+    exports com.github.hanyaeger.tutorial.Texts;
+
+
+
+
 
 }
