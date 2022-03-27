@@ -19,6 +19,6 @@ public class BonusRectanglePeg extends RectanglePeg {
 
     @Override
     public void onCollision(Collider collider) {
-
+        gameLevel.currentScore += (pointsForPeg * 3) ;
     }
 }

@@ -18,6 +18,6 @@ public class BonusCirclePeg extends CirclePeg {
 
     @Override
     public void onCollision(Collider collider) {
-
+        gameLevel.currentScore += (pointsForPeg * 3);
     }
 }

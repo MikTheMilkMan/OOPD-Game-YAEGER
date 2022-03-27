@@ -18,6 +18,6 @@ public class RegularRectanglePeg extends RectanglePeg {
 
     @Override
     public void onCollision(Collider collider) {
-
+        gameLevel.currentScore += pointsForPeg;
     }
 }

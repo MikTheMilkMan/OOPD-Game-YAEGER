@@ -10,7 +10,7 @@ public class PowerupCirclePeg extends CirclePeg {
     public String spriteImagePath;
     public int entityID;
 
-    protected PowerupCirclePeg(Coordinate2D initialLocation, String spriteImagePath, int entityID, GameLevel gameLevel) {
+    public PowerupCirclePeg(Coordinate2D initialLocation, String spriteImagePath, int entityID, GameLevel gameLevel) {
         super(initialLocation, spriteImagePath, entityID, gameLevel);
         this.spriteImagePath = spriteImagePath;
         this.entityID = entityID;
@@ -19,6 +19,6 @@ public class PowerupCirclePeg extends CirclePeg {
 
     @Override
     public void onCollision(Collider collider) {
-
+        gameLevel.currentScore += pointsForPeg;
     }
 }

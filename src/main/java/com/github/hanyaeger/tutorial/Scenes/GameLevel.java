@@ -4,6 +4,10 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.tutorial.GameLevelComponents.GameLevelTexts.HighScoreText;
+import com.github.hanyaeger.tutorial.GameLevelComponents.PegTileMap;
+import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.BonusCirclePeg;
+import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.CirclePeg;
+import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.PowerupCirclePeg;
 import com.github.hanyaeger.tutorial.Quaggle;
 import com.github.hanyaeger.tutorial.GameLevelComponents.GameLevelTexts.CurrentScoreText;
 
@@ -29,26 +33,32 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
             {4, 4}
     };
 
-
     private final int[][] Level5 = {
             {5, 5},
             {5, 5}
     };
 
+    private BonusCirclePeg tileMapEntityBonusCircle = new BonusCirclePeg(new Coordinate2D(-100, -100), "sprites/BonusCirclePeg.png", 9999, this);
+    private PowerupCirclePeg tileMapEntityPowerupCircle = new PowerupCirclePeg(new Coordinate2D(-100, -100), "sprites/PowerupCirclePeg.png", 99999, this);
+
+    private CirclePeg[] circlePegs = {tileMapEntityBonusCircle, tileMapEntityPowerupCircle};
+
     public int[][] currentLevel;
     public int currentScore = 0;
 
-    public GameLevel(Quaggle quaggle, int whichLevel){
+
+
+    public GameLevel(Quaggle quaggle, int whichLevel) {
         this.quaggle = quaggle;
-        if (whichLevel == 1){
+        if (whichLevel == 1) {
             currentLevel = Level1;
-        } else if (whichLevel == 2){
+        } else if (whichLevel == 2) {
             currentLevel = Level2;
-        } else if (whichLevel == 3){
+        } else if (whichLevel == 3) {
             currentLevel = Level3;
-        } else if (whichLevel == 4){
+        } else if (whichLevel == 4) {
             currentLevel = Level4;
-        } else if (whichLevel == 5){
+        } else if (whichLevel == 5) {
             currentLevel = Level5;
         }
 
@@ -70,6 +80,6 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
 
     @Override
     public void setupTileMaps() {
-
+        addTileMap(new PegTileMap(currentLevel, circlePegs));
     }
 }

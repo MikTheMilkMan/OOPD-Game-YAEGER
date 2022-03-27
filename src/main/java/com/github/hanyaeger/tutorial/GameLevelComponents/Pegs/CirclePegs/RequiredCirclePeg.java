@@ -10,7 +10,7 @@ public class RequiredCirclePeg extends CirclePeg {
     public String spriteImagePath;
     public int entityID;
 
-    protected RequiredCirclePeg(Coordinate2D initialLocation, String spriteImagePath, int entityID, GameLevel gameLevel) {
+    public RequiredCirclePeg(Coordinate2D initialLocation, String spriteImagePath, int entityID, GameLevel gameLevel) {
         super(initialLocation, spriteImagePath, entityID, gameLevel);
         this.spriteImagePath = spriteImagePath;
         this.entityID = entityID;
@@ -19,6 +19,6 @@ public class RequiredCirclePeg extends CirclePeg {
 
     @Override
     public void onCollision(Collider collider) {
-
+        gameLevel.currentScore += pointsForPeg;
     }
 }
