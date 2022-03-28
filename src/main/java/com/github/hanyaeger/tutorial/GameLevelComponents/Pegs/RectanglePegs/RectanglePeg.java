@@ -9,7 +9,7 @@ import com.github.hanyaeger.tutorial.Scenes.GameLevel;
 public abstract class RectanglePeg extends SpriteEntity implements Peg {
     public static GameLevel pegGameLevel;
 
-    protected RectanglePeg( String text, Coordinate2D initialLocation, Size size) {
+    protected RectanglePeg(String text, Coordinate2D initialLocation, Size size) {
         super(text, initialLocation, size);
     }
 }

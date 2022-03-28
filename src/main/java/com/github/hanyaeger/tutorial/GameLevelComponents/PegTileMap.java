@@ -33,9 +33,10 @@ public class PegTileMap extends TileMap {
     @Override
     public int[][] defineMap() {
         for (YaegerEntity y : this) {
-            if(y instanceof RectanglePeg || y instanceof CirclePeg){
+            if (y instanceof RectanglePeg || y instanceof CirclePeg) {
                 RectanglePeg.pegGameLevel = gameLevel;
                 CirclePeg.pegGameLevel = gameLevel;
+                break;
             }
         }
         return levelMap;

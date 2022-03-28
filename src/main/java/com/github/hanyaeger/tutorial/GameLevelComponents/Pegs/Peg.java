@@ -5,6 +5,5 @@ import com.github.hanyaeger.tutorial.Scenes.GameLevel;
 
 public interface Peg extends Collided {
     int pointsForPeg = 100;
-    int entityID = 0;
     String spriteImagePath = null;
 }

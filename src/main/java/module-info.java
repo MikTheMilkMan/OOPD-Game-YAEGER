@@ -16,6 +16,7 @@ module Quaggle {
     opens backgrounds;
     opens sprites;
 
+
     exports com.github.hanyaeger.tutorial.Buttons;
     exports com.github.hanyaeger.tutorial.GameLevelComponents;
     exports com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.RectanglePegs;
@@ -24,9 +25,7 @@ module Quaggle {
     exports com.github.hanyaeger.tutorial.GameLevelComponents.GameLevelTexts;
     exports com.github.hanyaeger.tutorial.Scenes;
     exports com.github.hanyaeger.tutorial.Texts;
-
-
-
+    exports com.github.hanyaeger.tutorial.GameLevelComponents.BallCannon;
 
 
 }

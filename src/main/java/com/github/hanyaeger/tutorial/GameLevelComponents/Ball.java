@@ -11,9 +11,11 @@ import com.github.hanyaeger.tutorial.Scenes.GameLevel;
 public class Ball extends DynamicCircleEntity implements Collider, Newtonian, SceneBorderTouchingWatcher {
     private GameLevel gameLevel;
 
-    protected Ball(Coordinate2D initialLocation, GameLevel gameLevel) {
+    public Ball(Coordinate2D initialLocation, GameLevel gameLevel) {
         super(initialLocation);
         this.gameLevel = gameLevel;
+        addSimplePhysics();
+//        setGravityDirection();
     }
 
     @Override
