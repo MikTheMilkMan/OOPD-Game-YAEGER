@@ -11,12 +11,13 @@ import com.github.hanyaeger.tutorial.Scenes.GameLevel;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 
-public class BallCannon extends DynamicCompositeEntity implements MouseButtonReleasedListener, MouseMovedListener {
+public class BallCannon extends DynamicCompositeEntity {
     private GameLevel gameLevel;
     private Coordinate2D attachedLoction;
-    private BallCannonShaft cannonShaft;
-    private BallCannonBase cannonBase;
     private CursorEntity cursor;
+
+    public BallCannonShaft cannonShaft;
+    private BallCannonBase cannonBase;
 
     public BallCannon(Coordinate2D attachedLocation, GameLevel gameLevel, CursorEntity cursor){
         super(attachedLocation);
@@ -33,15 +34,5 @@ public class BallCannon extends DynamicCompositeEntity implements MouseButtonRel
         cannonShaft = new BallCannonShaft(new Coordinate2D(getWidth() / 2 + cannonBase.getRadius(), 50 + (cannonBase.getRadius() * 1.5)), this, cursor);
         cannonShaft.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         addEntity(cannonShaft);
-    }
-
-    @Override
-    public void onMouseButtonReleased(MouseButton mouseButton, Coordinate2D coordinate2D) {
-        addEntity(new Ball(new Coordinate2D(getWidth() / 2, 100), gameLevel));
-    }
-
-    @Override
-    public void onMouseMoved(Coordinate2D coordinate2D) {
-
     }
 }

@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 public class CursorEntity extends DynamicCircleEntity {
     public CursorEntity(Coordinate2D initialLocation) {
         super(initialLocation);
-        setRadius(10);
+        setRadius(5);
         setFill(Color.RED);
     }
 }

@@ -4,18 +4,22 @@ import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
+import com.github.hanyaeger.api.userinput.MouseButtonReleasedListener;
 import com.github.hanyaeger.api.userinput.MouseMovedListener;
+import com.github.hanyaeger.tutorial.GameLevelComponents.Ball;
 import com.github.hanyaeger.tutorial.GameLevelComponents.BallCannon.BallCannon;
 import com.github.hanyaeger.tutorial.GameLevelComponents.CursorEntity;
 import com.github.hanyaeger.tutorial.GameLevelComponents.GameLevelTexts.HighScoreText;
 import com.github.hanyaeger.tutorial.GameLevelComponents.PegTileMap;
 import com.github.hanyaeger.tutorial.Quaggle;
 import com.github.hanyaeger.tutorial.GameLevelComponents.GameLevelTexts.CurrentScoreText;
+import javafx.scene.input.MouseButton;
 
 
-public class GameLevel extends DynamicScene implements TileMapContainer, MouseMovedListener {
+public class GameLevel extends DynamicScene implements TileMapContainer, MouseMovedListener, MouseButtonReleasedListener {
     private final Quaggle quaggle;
     private CursorEntity cursor;
+    private BallCannon cannon;
 
     private final int[][] testLevel = {
             {0, 0},
@@ -103,16 +107,30 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseMo
         //TextEntity that shows the current Highscore
         addEntity(new HighScoreText(new Coordinate2D(700, 40), "Highscore"));
 
-//        addEntity(new BallCannon(new Coordinate2D(getWidth() / 2, 100), new Coordinate2D(getWidth() / 2, 120), this, "sprites/BallCannon.png"));
-
-
-        var cannon = new BallCannon(new Coordinate2D(getWidth() / 2, 50), this, cursor);
+        cannon = new BallCannon(new Coordinate2D(getWidth() / 2, 50), this, cursor);
         cannon.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         addEntity(cannon);
+
+//        addEntity(new Ball(new Coordinate2D(300, 300), this, cursor));
     }
 
     @Override
     public void onMouseMoved(Coordinate2D coordinate2D) {
         cursor.setAnchorLocation(coordinate2D);
+    }
+
+    @Override
+    public void onMouseButtonReleased(MouseButton mouseButton, Coordinate2D coordinate2D) {
+        var angle = cannon.angleTo(cursor);
+        var distance = cannon.distanceTo(cursor) / 25;
+        var ball = new Ball(new Coordinate2D(getWidth() / 2, 100), this, cursor);
+
+        //if we have time left, put these variable changing things in class Ball
+        ball.setDirection(angle);
+        ball.setSpeed(distance);
+        ball.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        //end of note
+
+        addEntity(ball);
     }
 }

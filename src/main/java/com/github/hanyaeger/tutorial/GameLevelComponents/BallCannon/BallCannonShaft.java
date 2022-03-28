@@ -24,6 +24,5 @@ public class BallCannonShaft extends DynamicRectangleEntity implements UpdateExp
     public void explicitUpdate(long l) {
         var angle = angleTo(cursor);
         setRotate(angle);
-
     }
 }
