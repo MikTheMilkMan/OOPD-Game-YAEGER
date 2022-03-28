@@ -1,62 +1,25 @@
 package com.github.hanyaeger.tutorial.GameLevelComponents;
 
-import com.github.hanyaeger.api.AnchorPoint;
+import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.YaegerEntity;
 import com.github.hanyaeger.api.scenes.TileMap;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.BonusCirclePeg;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.PowerupCirclePeg;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.RegularCirclePeg;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.RequiredCirclePeg;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.RectanglePegs.BonusRectanglePeg;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.RectanglePegs.PowerupRectanglePeg;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.RectanglePegs.RegularRectanglePeg;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.RectanglePegs.RequiredRectanglePeg;
-
-//public class PegTileMap extends TileMap {
-//    //The array indicating what the location of each peg should be
-//    private final int[][] pegArray;
-//
-//    //Constructor
-//    public PegTileMap(int[][] pegArray){
-//        super();
-//        this.pegArray = pegArray;
-//    }
-//
-//    //All required entities will be set up
-//    @Override
-//    public void setupEntities() {
-//        addEntity(1, BonusCirclePeg.class, "sprites/BonusCirclePeg.png");
-//        addEntity(2, PowerupCirclePeg.class, "sprites/PowerupCirclePeg.png");
-//        addEntity(3, RegularCirclePeg.class, "sprites/RegularCirclePeg.png");
-//        addEntity(4, RequiredCirclePeg.class, "sprites/RequiredCirclePeg.png");
-//        addEntity(5, BonusRectanglePeg.class, "sprites/BonusRectanglePeg.png");
-//        addEntity(6, PowerupRectanglePeg.class, "sprites/PowerupRectanglePeg.png");
-//        addEntity(7, RegularRectanglePeg.class, "sprites/RegularRectanglePeg.png");
-//        addEntity(8, RequiredRectanglePeg.class, "sprites/RequiredRectanglePeg.png");
-//    }
-//
-//    @Override
-//    public int[][] defineMap() {
-//        return new int[0][];
-//    }
-//
-//    @Override
-//    public int[][] defineMap() {
-//        return pegArray;
-//    }
-//}
+import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.*;
+import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.RectanglePegs.*;
+import com.github.hanyaeger.tutorial.Scenes.GameLevel;
 
 public class PegTileMap extends TileMap {
-    private int[][] levelMap;
+    private final GameLevel gameLevel;
+    private final int[][] levelMap;
 
-    public PegTileMap(int[][] levelMap){
-//        this.levelMap = levelMap;
+    public PegTileMap(int[][] levelMap, GameLevel gameLevel) {
+        super(new Coordinate2D(100, 100), new Size(700, 500));
+        this.levelMap = levelMap;
+        this.gameLevel = gameLevel;
     }
 
     @Override
     public void setupEntities() {
-//        addEntity(1, BonusCirclePeg.class, "sprites/BonusCirclePeg.png");
-//        addEntity(1, PowerupCirclePeg.class, "sprites/PowerupCirclePeg.png");
-//        addEntity(1, BonusRectanglePeg.class, "sprites/BonusRectanglePeg");
         addEntity(1, BonusCirclePeg.class, "sprites/BonusCirclePeg.png");
         addEntity(2, PowerupCirclePeg.class, "sprites/PowerupCirclePeg.png");
         addEntity(3, RegularCirclePeg.class, "sprites/RegularCirclePeg.png");
@@ -65,28 +28,16 @@ public class PegTileMap extends TileMap {
         addEntity(6, PowerupRectanglePeg.class, "sprites/PowerupRectanglePeg.png");
         addEntity(7, RegularRectanglePeg.class, "sprites/RegularRectanglePeg.png");
         addEntity(8, RequiredRectanglePeg.class, "sprites/RequiredRectanglePeg.png");
-
     }
 
     @Override
     public int[][] defineMap() {
-        return new int[][] {
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7},
-                {0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0},
-                {0, 0, 0, 0, 3, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {3, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 2, 4, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 1, 0, 3, 0, 0, 0, 0, 0, 4, 0, 0, 0},
-                {2, 3, 1, 0, 0, 2, 0, 0, 0, 0, 3, 1, 0, 2, 0, 0, 0, 1, 4, 0, 0, 0, 0, 0, 0, 0, 6}
-        };
+        for (YaegerEntity y : this) {
+            if(y instanceof RectanglePeg || y instanceof CirclePeg){
+                RectanglePeg.pegGameLevel = gameLevel;
+                CirclePeg.pegGameLevel = gameLevel;
+            }
+        }
+        return levelMap;
     }
 }

@@ -12,6 +12,6 @@ public class PowerupRectanglePeg extends RectanglePeg {
 
     @Override
     public void onCollision(Collider collider) {
-
+        pegGameLevel.currentScore += pointsForPeg;
     }
 }

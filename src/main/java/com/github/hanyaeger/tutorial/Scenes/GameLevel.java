@@ -1,18 +1,14 @@
 package com.github.hanyaeger.tutorial.Scenes;
 
-import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
+import com.github.hanyaeger.tutorial.GameLevelComponents.Ball;
+import com.github.hanyaeger.tutorial.GameLevelComponents.BallCannon;
 import com.github.hanyaeger.tutorial.GameLevelComponents.GameLevelTexts.HighScoreText;
 import com.github.hanyaeger.tutorial.GameLevelComponents.PegTileMap;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.*;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.Peg;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.RectanglePegs.*;
 import com.github.hanyaeger.tutorial.Quaggle;
 import com.github.hanyaeger.tutorial.GameLevelComponents.GameLevelTexts.CurrentScoreText;
-import javafx.stage.PopupWindow;
 
 
 public class GameLevel extends DynamicScene implements TileMapContainer {
@@ -81,13 +77,14 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
             currentLevel = Level4;
         } else if (whichLevel == 5) {
             currentLevel = Level5;
+        } else {
+            currentLevel = testLevel;
         }
     }
 
     @Override
     public void setupTileMaps() {
-        addTileMap(new PegTileMap(testLevel));
-//        addTileMap(new PegTileMap(Level2));
+        addTileMap(new PegTileMap(currentLevel, this));
     }
 
     @Override
@@ -101,5 +98,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
 
         //TextEntity that shows the current Highscore
         addEntity(new HighScoreText(new Coordinate2D(700, 40), "Highscore"));
+
+//        addEntity(new BallCannon());
     }
 }
