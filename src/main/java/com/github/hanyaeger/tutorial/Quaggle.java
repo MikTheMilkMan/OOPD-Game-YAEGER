@@ -14,7 +14,7 @@ public class Quaggle extends YaegerGame {
     @Override
     public void setupGame() {
         setGameTitle("Quaggle");
-        setSize(new Size(800, 600));
+        setSize(new Size(1092, 819));
     }
 
     @Override

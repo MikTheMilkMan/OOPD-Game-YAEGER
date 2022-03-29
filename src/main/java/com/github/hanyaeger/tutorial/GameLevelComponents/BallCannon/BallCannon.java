@@ -3,13 +3,8 @@ package com.github.hanyaeger.tutorial.GameLevelComponents.BallCannon;
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
-import com.github.hanyaeger.api.userinput.MouseButtonReleasedListener;
-import com.github.hanyaeger.api.userinput.MouseMovedListener;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Ball;
 import com.github.hanyaeger.tutorial.GameLevelComponents.CursorEntity;
 import com.github.hanyaeger.tutorial.Scenes.GameLevel;
-import javafx.scene.Cursor;
-import javafx.scene.input.MouseButton;
 
 public class BallCannon extends DynamicCompositeEntity {
     private GameLevel gameLevel;

@@ -4,14 +4,11 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.tutorial.Scenes.GameLevel;
+import javafx.scene.paint.Color;
 
 public class RequiredRectanglePeg extends RectanglePeg {
-    public RequiredRectanglePeg(Coordinate2D initialLocation, Size size, String text) {
-        super(text, initialLocation, size);
-    }
-
-    @Override
-    public void onCollision(Collider collider) {
-        pegGameLevel.currentScore += (pointsForPeg * 3);
+    public RequiredRectanglePeg(Coordinate2D initialLocation, Size size) {
+        super(initialLocation, size);
+        setFill(Color.ORANGE);
     }
 }

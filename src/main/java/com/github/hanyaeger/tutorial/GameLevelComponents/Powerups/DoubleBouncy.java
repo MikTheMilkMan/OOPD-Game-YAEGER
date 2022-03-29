@@ -1,4 +1,5 @@
 package com.github.hanyaeger.tutorial.GameLevelComponents.Powerups;
 
-public class DoubleBouncy implements Powerup{
+public class DoubleBouncy implements Powerup {
+
 }

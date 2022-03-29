@@ -2,6 +2,7 @@ package com.github.hanyaeger.tutorial.Scenes;
 
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.MouseButtonReleasedListener;
@@ -11,60 +12,18 @@ import com.github.hanyaeger.tutorial.GameLevelComponents.BallCannon.BallCannon;
 import com.github.hanyaeger.tutorial.GameLevelComponents.CursorEntity;
 import com.github.hanyaeger.tutorial.GameLevelComponents.GameLevelTexts.HighScoreText;
 import com.github.hanyaeger.tutorial.GameLevelComponents.PegTileMap;
+import com.github.hanyaeger.tutorial.GameLevelComponents.Levels;
 import com.github.hanyaeger.tutorial.Quaggle;
 import com.github.hanyaeger.tutorial.GameLevelComponents.GameLevelTexts.CurrentScoreText;
 import javafx.scene.input.MouseButton;
 
 
-public class GameLevel extends DynamicScene implements TileMapContainer, MouseMovedListener, MouseButtonReleasedListener {
+public class GameLevel extends DynamicScene implements TileMapContainer, MouseMovedListener, MouseButtonReleasedListener, Levels {
     private final Quaggle quaggle;
-    private CursorEntity cursor;
-    private BallCannon cannon;
 
-    private final int[][] testLevel = {
-            {0, 0},
-            {0, 0}
-    };
-
-    private final int[][] Level1 = {
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0},
-            {0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 3, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0},
-            {3, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 3, 0, 1},
-            {0, 0, 2, 4, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3, 0, 4, 0, 0, 0},
-            {1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 1, 0, 3, 0},
-            {2, 3, 1, 0, 0, 2, 0, 0, 0, 0, 3, 1, 0, 2, 0, 0, 0, 1, 4},
-    };
-
-    private final int[][] Level2 = {
-            {2, 2},
-            {2, 2}
-    };
-
-    private final int[][] Level3 = {
-            {3, 3},
-            {3, 3}
-    };
-    private final int[][] Level4 = {
-            {4, 4},
-            {4, 4}
-    };
-
-    private final int[][] Level5 = {
-            {5, 5},
-            {5, 5}
-    };
-
-
+    private CursorEntity cursor = new CursorEntity(new Coordinate2D(0, 0));
+    protected BallCannon cannon;
+    public Ball ball;
 
     public int[][] currentLevel;
     public int currentScore = 0;
@@ -98,7 +57,6 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseMo
 
     @Override
     public void setupEntities() {
-        cursor = new CursorEntity(new Coordinate2D(0, 0));
         addEntity(cursor);
 
         //TextEntity that shows the current Score
@@ -123,7 +81,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseMo
     public void onMouseButtonReleased(MouseButton mouseButton, Coordinate2D coordinate2D) {
         var angle = cannon.angleTo(cursor);
         var distance = cannon.distanceTo(cursor) / 25;
-        var ball = new Ball(new Coordinate2D(getWidth() / 2, 100), this, cursor);
+        ball = new Ball(new Coordinate2D(getWidth() / 2, 100), this, cursor);
 
         //if we have time left, put these variable changing things in class Ball
         ball.setDirection(angle);
