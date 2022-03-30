@@ -10,7 +10,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class QuitButton extends Button {
-    private Quaggle quaggle;
+    private final  Quaggle quaggle;
 
     public QuitButton(Coordinate2D initialLocation, Quaggle quaggle) {
         super(initialLocation, quaggle, "Quit Game");

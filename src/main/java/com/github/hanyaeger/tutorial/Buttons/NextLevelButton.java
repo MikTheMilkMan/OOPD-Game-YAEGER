@@ -5,8 +5,8 @@ import com.github.hanyaeger.tutorial.Quaggle;
 import javafx.scene.input.MouseButton;
 
 public class NextLevelButton extends Button {
-    int level;
-    Quaggle quaggle;
+    private final int level;
+    private final Quaggle quaggle;
     public NextLevelButton(Coordinate2D initialLocation, Quaggle quaggle, String caption, int level) {
         super(initialLocation, quaggle, caption);
         this.quaggle = quaggle;

@@ -87,9 +87,6 @@ public class Ball extends DynamicCircleEntity implements Collided, Collider, New
         }
     }
 
-
-
-
     public void addToScoreWithBall(int score) {
         scoreWithBall += score;
     }

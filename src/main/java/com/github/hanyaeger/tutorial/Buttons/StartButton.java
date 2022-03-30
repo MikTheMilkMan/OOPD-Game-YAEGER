@@ -10,7 +10,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class StartButton extends Button {
-    private Quaggle quaggle;
+    private final  Quaggle quaggle;
 
     public StartButton(Coordinate2D initialLocation, Quaggle quaggle) {
         super(initialLocation, quaggle, "Start Game");

@@ -18,6 +18,7 @@ public class PowerupCirclePeg extends CirclePeg {
             isHit = true;
             gameLevel.currentScore += pegScore;
             gameLevel.ball.addToScoreWithBall(pegScore);
+            gameLevel.powerupActive = true;
         }
     }
 }

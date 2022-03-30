@@ -134,11 +134,10 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseMo
                 }
             }
 
-            //if we have time left, put these variable changing things in class Ball
             ball.setDirection(angle);
             ball.setSpeed(distance);
             ball.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-            //end of note
+
             ballsOnScreen++;
             addEntity(ball);
         }
@@ -156,18 +155,6 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseMo
     void levelDone() {
         if (requiredPegsleft == 0 && ballsOnScreen == 0) {
             if (whichLevel == 1) {
-                quaggle.setActiveScene(7);
-            } else if (whichLevel == 2) {
-                quaggle.setActiveScene(9);
-            } else if (whichLevel == 3) {
-                quaggle.setActiveScene(11);
-            } else if (whichLevel == 4) {
-                quaggle.setActiveScene(13);
-            } else if (whichLevel == 5) {
-                quaggle.setActiveScene(15);
-            }
-        } else if (requiredPegsleft > 0 && remainingBalls == 0 && ballsOnScreen == 0) {
-            if (whichLevel == 1) {
                 quaggle.setActiveScene(8);
             } else if (whichLevel == 2) {
                 quaggle.setActiveScene(10);
@@ -177,6 +164,18 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseMo
                 quaggle.setActiveScene(14);
             } else if (whichLevel == 5) {
                 quaggle.setActiveScene(16);
+            }
+        } else if (requiredPegsleft > 0 && remainingBalls == 0 && ballsOnScreen == 0) {
+            if (whichLevel == 1) {
+                quaggle.setActiveScene(7);
+            } else if (whichLevel == 2) {
+                quaggle.setActiveScene(9);
+            } else if (whichLevel == 3) {
+                quaggle.setActiveScene(11);
+            } else if (whichLevel == 4) {
+                quaggle.setActiveScene(13);
+            } else if (whichLevel == 5) {
+                quaggle.setActiveScene(15);
             }
 
         }

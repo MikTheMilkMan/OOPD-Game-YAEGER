@@ -19,6 +19,7 @@ public class PowerupRectanglePeg extends RectanglePeg {
             isHit = true;
             gameLevel.currentScore += pegScore;
             gameLevel.ball.addToScoreWithBall(pegScore);
+            gameLevel.powerupActive = true;
         }
     }
 }

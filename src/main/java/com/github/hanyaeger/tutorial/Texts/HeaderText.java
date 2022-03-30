@@ -10,6 +10,6 @@ public class HeaderText extends TextEntity {
     public HeaderText(Coordinate2D initialLocation, String text) {
         super(initialLocation, text);
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 80));
+        setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 60));
     }
 }
