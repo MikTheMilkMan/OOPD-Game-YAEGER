@@ -1,0 +1,12 @@
+module:Quaggle
+com.github.hanyaeger.tutorial
+com.github.hanyaeger.tutorial.Buttons
+com.github.hanyaeger.tutorial.GameLevelComponents
+com.github.hanyaeger.tutorial.GameLevelComponents.BallCannon
+com.github.hanyaeger.tutorial.GameLevelComponents.GameLevelTexts
+com.github.hanyaeger.tutorial.GameLevelComponents.Pegs
+com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs
+com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.RectanglePegs
+com.github.hanyaeger.tutorial.GameLevelComponents.Powerups
+com.github.hanyaeger.tutorial.Scenes
+com.github.hanyaeger.tutorial.Texts

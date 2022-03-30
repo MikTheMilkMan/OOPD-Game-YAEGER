@@ -15,11 +15,19 @@ public class LevelCompleted extends StaticScene {
     private final Quaggle quaggle;
     private final int nextLevel;
 
+
+    /**
+     * @param quaggle
+     * @param nextLevel
+     */
     public LevelCompleted(Quaggle quaggle, int nextLevel){
         this.quaggle = quaggle;
         this.nextLevel = nextLevel;
     }
 
+    /**
+     *
+     */
     @Override
     public void setupScene() {
         setBackgroundAudio("audio/GameLevelCompleted.mp3");
