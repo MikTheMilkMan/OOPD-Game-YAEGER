@@ -10,6 +10,7 @@ import com.github.hanyaeger.tutorial.Scenes.GameLevel;
 public abstract class RectanglePeg extends RectangleEntity implements Peg {
     public static GameLevel gameLevel;
     private Coordinate2D location;
+    boolean isHit = false;
 
     protected RectanglePeg(Coordinate2D initialLocation, Size size) {
         super(initialLocation);
@@ -19,8 +20,8 @@ public abstract class RectanglePeg extends RectangleEntity implements Peg {
         setWidth(40);
     }
 
-    @Override
     public void onCollision(Collider collider) {
         remove();
+        System.out.println(gameLevel.currentScore);
     }
 }

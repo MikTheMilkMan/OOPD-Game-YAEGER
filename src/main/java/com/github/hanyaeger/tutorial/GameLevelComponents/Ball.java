@@ -1,18 +1,10 @@
 package com.github.hanyaeger.tutorial.GameLevelComponents;
 
-import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.*;
 import com.github.hanyaeger.api.entities.impl.DynamicCircleEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.BonusCirclePeg;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.PowerupCirclePeg;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.RegularCirclePeg;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.RequiredCirclePeg;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.RectanglePegs.BonusRectanglePeg;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.RectanglePegs.PowerupRectanglePeg;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.RectanglePegs.RegularRectanglePeg;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.RectanglePegs.RequiredRectanglePeg;
+import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.Peg;
 import com.github.hanyaeger.tutorial.Scenes.GameLevel;
 import javafx.scene.Scene;
 
@@ -31,7 +23,8 @@ public class Ball extends DynamicCircleEntity implements Collided, Collider, New
         this.cursor = cursor;
 
         setGravityDirection(0);
-        setFrictionConstant(0.008);
+        setGravityConstant(0.05);
+        setFrictionConstant(0.002);
     }
 
     @Override
@@ -39,19 +32,19 @@ public class Ball extends DynamicCircleEntity implements Collided, Collider, New
         var angle = angleTo(getLocationInScene());
         var speed = getSpeed();
 
-        if (sceneBorder == SceneBorder.BOTTOM) {
-            if(gameLevel.powerupActive && gameLevel.whichPowerup == 3){
+        if (sceneBorder.equals(SceneBorder.BOTTOM)) {
+            if (gameLevel.powerupActive && gameLevel.whichPowerup == 3) {
                 gameLevel.addPowerupBall(new Coordinate2D(getLocationInScene().getX(), 100), getSpeed(), getDirection());
                 gameLevel.powerupActive = false;
             }
-
+            gameLevel.ballsOnScreen--;
             remove();
-        } else if (sceneBorder == SceneBorder.TOP) {
-            invertSpeedInDirection(angle - 180);
-        } else if (sceneBorder == SceneBorder.LEFT) {
-            invertSpeedInDirection(angle - Direction.RIGHT.getValue());
-        } else if (sceneBorder == SceneBorder.RIGHT) {
-            invertSpeedInDirection(angle + Direction.RIGHT.getValue());
+        } else if (sceneBorder.equals(SceneBorder.TOP)) {
+            invertSpeedInDirection(180);
+        } else if (sceneBorder.equals(SceneBorder.LEFT)) {
+            invertSpeedInDirection(Direction.LEFT.getValue());
+        } else if (sceneBorder.equals(SceneBorder.RIGHT)) {
+            invertSpeedInDirection(Direction.RIGHT.getValue());
         }
         setSpeed(speed);
     }
@@ -70,39 +63,34 @@ public class Ball extends DynamicCircleEntity implements Collided, Collider, New
         double[] upperLeftBallCollider = {collider.getBoundingBox().getMinX(), collider.getBoundingBox().getMinY()};
         double[] upperRightBallCollider = {collider.getBoundingBox().getMaxX(), collider.getBoundingBox().getMinY()};
 
-        if((lowerLeftBall[0] >= upperLeftBallCollider[0] && lowerLeftBall[0] <= upperRightBallCollider[0]) || (lowerRightBall[0] >= upperLeftBallCollider[0] && lowerRightBall[0] <= upperRightBallCollider[0])){
-            if(lowerLeftBall[1] < collider.getBoundingBox().getMaxY()){
+        if ((lowerLeftBall[0] >= upperLeftBallCollider[0] && lowerLeftBall[0] <= upperRightBallCollider[0]) || (lowerRightBall[0] >= upperLeftBallCollider[0] && lowerRightBall[0] <= upperRightBallCollider[0])) {
+            if (lowerLeftBall[1] < collider.getBoundingBox().getMaxY()) {
                 invertSpeedInDirection(angle);
 
-            } else if (lowerLeftBall[1] > collider.getBoundingBox().getCenterY()){
+            } else if (lowerLeftBall[1] > collider.getBoundingBox().getCenterY()) {
                 invertSpeedInDirection(angle - 180);
             }
         }
 
         setSpeed(speed);
 
-        if(collider instanceof BonusRectanglePeg || collider instanceof BonusCirclePeg) {
-            gameLevel.currentScore += 300 * pegsHit;
-            scoreWithBall += 300 * pegsHit;
-        } else if (collider instanceof PowerupRectanglePeg || collider instanceof PowerupCirclePeg){
-            gameLevel.currentScore += 100 * pegsHit;
-            scoreWithBall += 100 * pegsHit;
-            gameLevel.powerupActive = true;
-        } else if (collider instanceof RegularRectanglePeg || collider instanceof RegularCirclePeg) {
-            gameLevel.currentScore += 100 * pegsHit;
-            scoreWithBall += 100 * pegsHit;
-        } else if (collider instanceof RequiredRectanglePeg || collider instanceof RequiredCirclePeg){
-            gameLevel.currentScore += 100 * pegsHit;
-            scoreWithBall += 100 * pegsHit;
+        if (collider instanceof Peg) {
+            Peg p = (Peg) collider;
+            p.onCollision(this);
         }
 
         gameLevel.currentScoreText.setText("Current score : " + gameLevel.currentScore);
 
-        if(scoreWithBall >= 6500 && !extraBallGiven) {
+        if (scoreWithBall >= 6500 && !extraBallGiven) {
             gameLevel.remainingBalls++;
             extraBallGiven = true;
         }
-
     }
 
+
+
+
+    public void addToScoreWithBall(int score) {
+        scoreWithBall += score;
+    }
 }

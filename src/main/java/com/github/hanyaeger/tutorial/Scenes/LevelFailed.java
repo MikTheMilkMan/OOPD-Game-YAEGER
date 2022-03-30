@@ -6,7 +6,7 @@ import com.github.hanyaeger.tutorial.Quaggle;
 public class LevelFailed extends StaticScene {
     private final Quaggle quaggle;
 
-    public LevelFailed(Quaggle quaggle){
+    public LevelFailed(Quaggle quaggle, int lastLevel){
         this.quaggle = quaggle;
     }
 

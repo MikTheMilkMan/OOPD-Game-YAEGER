@@ -10,6 +10,7 @@ import com.github.hanyaeger.tutorial.Scenes.GameLevel;
 public abstract class CirclePeg extends CircleEntity implements Peg {
     public static GameLevel gameLevel;
     private Coordinate2D location;
+    boolean isHit = false;
 
     protected CirclePeg(Coordinate2D initialLocation, Size size) {
         super(initialLocation);
@@ -17,9 +18,6 @@ public abstract class CirclePeg extends CircleEntity implements Peg {
 
         setRadius(10);
     }
-
-    @Override
-    public void onCollision(Collider collider) {
-        remove();
-    }
 }
+
+

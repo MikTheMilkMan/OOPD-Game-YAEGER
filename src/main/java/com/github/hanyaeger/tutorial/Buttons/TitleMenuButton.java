@@ -24,14 +24,4 @@ public class TitleMenuButton extends Button{
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
 
     }
-
-    @Override
-    public void onMouseEntered() {
-
-    }
-
-    @Override
-    public void onMouseExited() {
-
-    }
 }

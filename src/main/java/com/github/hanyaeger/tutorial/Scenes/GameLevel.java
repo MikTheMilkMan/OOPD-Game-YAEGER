@@ -26,38 +26,53 @@ import static java.lang.Math.ceil;
 import static java.lang.Math.random;
 
 public class GameLevel extends DynamicScene implements TileMapContainer, MouseMovedListener, MouseButtonReleasedListener, Levels {
-    private final Quaggle quaggle;
+    public final Quaggle quaggle;
     private CursorEntity cursor = new CursorEntity(new Coordinate2D(0, 0));
 
     public BallCannon cannon;
     public Ball ball;
-
-    public PegTileMap pegTileMap;
-    public int[][] currentLevel;
-    public int currentScore = 0;
-    public int remainingBalls = 5;
     public CurrentScoreText currentScoreText;
     public RemainingBallsText remainingBallsText;
+    public PegTileMap pegTileMap;
+
+    public int whichLevel;
+    public int[][] currentLevelLayout;
+    public int requiredPegsleft;
     public int whichPowerup;
     public boolean powerupActive = false;
 
+    public int currentScore = 0;
+    public int remainingBalls = 5;
+    public int ballsOnScreen = 0;
+
     public GameLevel(Quaggle quaggle, int whichLevel) {
         this.quaggle = quaggle;
+        this.whichLevel = whichLevel;
+
         if (whichLevel == 1) {
-            currentLevel = Level1;
-            whichPowerup = 3;
+            currentLevelLayout = Level1;
+            whichPowerup = 1;
+            requiredPegsleft = level1AmountOfRequiredPegs;
         } else if (whichLevel == 2) {
-            currentLevel = Level2;
+            currentLevelLayout = Level2;
             whichPowerup = 2;
+            requiredPegsleft = level2AmountOfRequiredPegs;
         } else if (whichLevel == 3) {
-            currentLevel = Level3;
+            currentLevelLayout = Level3;
             whichPowerup = 3;
+            requiredPegsleft = level3AmountOfRequiredPegs;
         } else if (whichLevel == 4) {
-            currentLevel = Level4;
+            currentLevelLayout = Level4;
+            whichPowerup = 1;
+            requiredPegsleft = level4AmountOfRequiredPegs;
         } else if (whichLevel == 5) {
-            currentLevel = Level5;
+            currentLevelLayout = Level5;
+            whichPowerup = 2;
+            requiredPegsleft = level5AmountOfRequiredPegs;
         } else {
-            currentLevel = testLevel;
+            currentLevelLayout = testLevel;
+            whichPowerup = 1;
+            requiredPegsleft = testLevelAmountOfRequiredPegs;
         }
     }
 
@@ -94,22 +109,23 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseMo
     @Override
     public void onMouseMoved(Coordinate2D coordinate2D) {
         cursor.setAnchorLocation(coordinate2D);
+        levelDone();
     }
 
     @Override
     public void onMouseButtonReleased(MouseButton mouseButton, Coordinate2D coordinate2D) {
-        if(remainingBalls > 0) {
-            remainingBalls--;
+        if (remainingBalls > 0 && ballsOnScreen == 0) {
+//            remainingBalls--;
             remainingBallsText.setText("Balls Remaining: " + remainingBalls);
 
             var angle = cannon.angleTo(cursor);
             var distance = cannon.distanceTo(cursor) / 25;
-            if(distance > 25){
-                distance = 25;
+            if (distance > 10) {
+                distance = 10;
             }
             ball = new Ball(new Coordinate2D(getWidth() / 2, 100), this, cursor);
 
-            if(powerupActive) {
+            if (powerupActive) {
                 if (whichPowerup == 1) {
                     new DoubleBouncy(ball);
                     powerupActive = false;
@@ -123,16 +139,46 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseMo
             ball.setSpeed(distance);
             ball.setAnchorPoint(AnchorPoint.CENTER_CENTER);
             //end of note
-
+            ballsOnScreen++;
             addEntity(ball);
         }
     }
 
-    public void addPowerupBall(Coordinate2D coordinate2D, double speed, double direction){
+    public void addPowerupBall(Coordinate2D coordinate2D, double speed, double direction) {
         var tempBall = new Ball(coordinate2D, this, cursor);
         tempBall.setDirection(direction);
         tempBall.setSpeed(speed);
         tempBall.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        ballsOnScreen++;
         addEntity(tempBall);
+    }
+
+    void levelDone() {
+        if (requiredPegsleft == 0 && ballsOnScreen == 0) {
+            if (whichLevel == 1) {
+                quaggle.setActiveScene(7);
+            } else if (whichLevel == 2) {
+                quaggle.setActiveScene(9);
+            } else if (whichLevel == 3) {
+                quaggle.setActiveScene(11);
+            } else if (whichLevel == 4) {
+                quaggle.setActiveScene(13);
+            } else if (whichLevel == 5) {
+                quaggle.setActiveScene(15);
+            }
+        } else if (requiredPegsleft > 0 && remainingBalls == 0 && ballsOnScreen == 0) {
+            if (whichLevel == 1) {
+                quaggle.setActiveScene(8);
+            } else if (whichLevel == 2) {
+                quaggle.setActiveScene(10);
+            } else if (whichLevel == 3) {
+                quaggle.setActiveScene(12);
+            } else if (whichLevel == 4) {
+                quaggle.setActiveScene(14);
+            } else if (whichLevel == 5) {
+                quaggle.setActiveScene(16);
+            }
+
+        }
     }
 }

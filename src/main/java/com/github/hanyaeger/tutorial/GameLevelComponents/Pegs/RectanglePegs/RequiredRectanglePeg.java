@@ -11,4 +11,16 @@ public class RequiredRectanglePeg extends RectanglePeg {
         super(initialLocation, size);
         setFill(Color.ORANGE);
     }
+
+    public void onCollision(Collider collider) {
+        remove();
+
+        if(!isHit) {
+            isHit = true;
+            gameLevel.currentScore += pegScore;
+            gameLevel.ball.addToScoreWithBall(pegScore);
+            gameLevel.requiredPegsleft--;
+            System.out.println(gameLevel.requiredPegsleft);
+        }
+    }
 }

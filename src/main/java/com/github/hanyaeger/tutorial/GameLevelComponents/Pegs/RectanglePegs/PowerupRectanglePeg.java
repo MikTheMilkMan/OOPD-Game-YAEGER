@@ -12,5 +12,13 @@ public class PowerupRectanglePeg extends RectanglePeg {
         setFill(Color.GREEN);
     }
 
+    public void onCollision(Collider collider) {
+        remove();
 
+        if(!isHit){
+            isHit = true;
+            gameLevel.currentScore += pegScore;
+            gameLevel.ball.addToScoreWithBall(pegScore);
+        }
+    }
 }

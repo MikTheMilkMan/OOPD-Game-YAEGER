@@ -11,4 +11,14 @@ public class RegularRectanglePeg extends RectanglePeg {
         super(initialLocation, size);
         setFill(Color.BLUE);
     }
+
+    public void onCollision(Collider collider) {
+        remove();
+
+        if(!isHit){
+            isHit = true;
+            gameLevel.currentScore += pegScore;
+            gameLevel.ball.addToScoreWithBall(pegScore);
+        }
+    }
 }

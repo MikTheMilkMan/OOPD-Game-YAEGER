@@ -6,6 +6,7 @@ import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import com.github.hanyaeger.api.userinput.MouseEnterListener;
 import com.github.hanyaeger.api.userinput.MouseExitListener;
 import com.github.hanyaeger.tutorial.Quaggle;
+import javafx.scene.Cursor;
 
 
 public abstract class Button extends TextEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
@@ -14,5 +15,15 @@ public abstract class Button extends TextEntity implements MouseButtonPressedLis
     public Button(Coordinate2D initialLocation, Quaggle quaggle, String caption) {
         super(initialLocation, caption);
         this.quaggle = quaggle;
+    }
+
+    @Override
+    public void onMouseEntered() {
+        setCursor(Cursor.HAND);
+    }
+
+    @Override
+    public void onMouseExited() {
+        setCursor(Cursor.DEFAULT);
     }
 }
