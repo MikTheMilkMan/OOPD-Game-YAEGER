@@ -12,9 +12,8 @@ public class PowerupCirclePeg extends CirclePeg {
     }
 
     public void onCollision(Collider collider) {
-        remove();
-
         if(!isHit){
+            super.onCollision(collider);
             isHit = true;
             gameLevel.currentScore += pegScore;
             gameLevel.ball.addToScoreWithBall(pegScore);

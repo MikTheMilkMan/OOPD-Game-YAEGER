@@ -22,6 +22,5 @@ public abstract class RectanglePeg extends RectangleEntity implements Peg {
 
     public void onCollision(Collider collider) {
         remove();
-        System.out.println(gameLevel.currentScore);
     }
 }

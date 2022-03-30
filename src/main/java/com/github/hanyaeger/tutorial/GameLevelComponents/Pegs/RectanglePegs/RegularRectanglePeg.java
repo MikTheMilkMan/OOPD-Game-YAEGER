@@ -13,8 +13,7 @@ public class RegularRectanglePeg extends RectanglePeg {
     }
 
     public void onCollision(Collider collider) {
-        remove();
-
+        super.onCollision(collider);
         if(!isHit){
             isHit = true;
             gameLevel.currentScore += pegScore;

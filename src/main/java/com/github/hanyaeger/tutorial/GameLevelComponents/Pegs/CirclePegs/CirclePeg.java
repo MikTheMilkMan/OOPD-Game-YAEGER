@@ -18,6 +18,10 @@ public abstract class CirclePeg extends CircleEntity implements Peg {
 
         setRadius(10);
     }
+
+    public void onCollision(Collider collider) {
+        remove();
+    }
 }
 
 

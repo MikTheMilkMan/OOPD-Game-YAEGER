@@ -12,14 +12,11 @@ public class RequiredCirclePeg extends CirclePeg {
     }
 
     public void onCollision(Collider collider) {
-        remove();
-
         if(!isHit) {
-            isHit = true;
-            gameLevel.requiredPegsleft--;
+            super.onCollision(collider);
+            gameLevel.requiredPegsRemaining--;
             gameLevel.currentScore += pegScore;
             gameLevel.ball.addToScoreWithBall(pegScore);
-            System.out.println(gameLevel.requiredPegsleft);
         }
     }
 }

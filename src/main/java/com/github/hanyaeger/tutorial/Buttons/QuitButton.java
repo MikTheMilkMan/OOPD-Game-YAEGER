@@ -22,16 +22,6 @@ public class QuitButton extends Button {
     }
 
     @Override
-    public void onMouseEntered() {
-        setCursor(Cursor.HAND);
-    }
-
-    @Override
-    public void onMouseExited() {
-        setCursor(Cursor.DEFAULT);
-    }
-
-    @Override
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
         quaggle.quit();
     }

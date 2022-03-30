@@ -6,21 +6,16 @@ import com.github.hanyaeger.api.entities.impl.DynamicCircleEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.Peg;
 import com.github.hanyaeger.tutorial.Scenes.GameLevel;
-import javafx.scene.Scene;
-
 
 public class Ball extends DynamicCircleEntity implements Collided, Collider, Newtonian, SceneBorderTouchingWatcher {
     public GameLevel gameLevel;
-    private CursorEntity cursor;
-    private int pegsHit = 0;
     private int scoreWithBall = 0;
     private boolean extraBallGiven = false;
 
-    public Ball(Coordinate2D initialLocation, GameLevel gameLevel, CursorEntity cursor) {
+    public Ball(Coordinate2D initialLocation, GameLevel gameLevel) {
         super(initialLocation);
         setRadius(14);
         this.gameLevel = gameLevel;
-        this.cursor = cursor;
 
         setGravityDirection(0);
         setGravityConstant(0.05);
@@ -29,7 +24,6 @@ public class Ball extends DynamicCircleEntity implements Collided, Collider, New
 
     @Override
     public void notifyBoundaryTouching(SceneBorder sceneBorder) {
-        var angle = angleTo(getLocationInScene());
         var speed = getSpeed();
 
         if (sceneBorder.equals(SceneBorder.BOTTOM)) {
@@ -51,8 +45,6 @@ public class Ball extends DynamicCircleEntity implements Collided, Collider, New
 
     @Override
     public void onCollision(Collider collider) {
-        pegsHit++;
-
         var speed = getSpeed();
         var angle = angleTo(getLocationInScene());
 

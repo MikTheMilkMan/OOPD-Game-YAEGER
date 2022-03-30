@@ -12,8 +12,7 @@ public class BonusRectanglePeg extends RectanglePeg {
     }
 
     public void onCollision(Collider collider) {
-        remove();
-
+        super.onCollision(collider);
         if(!isHit){
             isHit = true;
             gameLevel.currentScore += pegScore * 3;

@@ -12,18 +12,10 @@ import com.github.hanyaeger.tutorial.GameLevelComponents.CursorEntity;
 import com.github.hanyaeger.tutorial.GameLevelComponents.GameLevelTexts.RemainingBallsText;
 import com.github.hanyaeger.tutorial.GameLevelComponents.PegTileMap;
 import com.github.hanyaeger.tutorial.GameLevelComponents.Levels;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.RectanglePegs.RectanglePeg;
 import com.github.hanyaeger.tutorial.GameLevelComponents.Powerups.DoubleBouncy;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Powerups.OrangeBegone;
-import com.github.hanyaeger.tutorial.GameLevelComponents.Powerups.Powerup;
 import com.github.hanyaeger.tutorial.Quaggle;
 import com.github.hanyaeger.tutorial.GameLevelComponents.GameLevelTexts.CurrentScoreText;
 import javafx.scene.input.MouseButton;
-
-import java.util.Random;
-
-import static java.lang.Math.ceil;
-import static java.lang.Math.random;
 
 public class GameLevel extends DynamicScene implements TileMapContainer, MouseMovedListener, MouseButtonReleasedListener, Levels {
     public final Quaggle quaggle;
@@ -37,7 +29,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseMo
 
     public int whichLevel;
     public int[][] currentLevelLayout;
-    public int requiredPegsleft;
+    public int requiredPegsRemaining;
     public int whichPowerup;
     public boolean powerupActive = false;
 
@@ -52,27 +44,27 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseMo
         if (whichLevel == 1) {
             currentLevelLayout = Level1;
             whichPowerup = 1;
-            requiredPegsleft = level1AmountOfRequiredPegs;
+            requiredPegsRemaining = level1AmountOfRequiredPegs;
         } else if (whichLevel == 2) {
             currentLevelLayout = Level2;
             whichPowerup = 2;
-            requiredPegsleft = level2AmountOfRequiredPegs;
+            requiredPegsRemaining = level2AmountOfRequiredPegs;
         } else if (whichLevel == 3) {
             currentLevelLayout = Level3;
             whichPowerup = 3;
-            requiredPegsleft = level3AmountOfRequiredPegs;
+            requiredPegsRemaining = level3AmountOfRequiredPegs;
         } else if (whichLevel == 4) {
             currentLevelLayout = Level4;
             whichPowerup = 1;
-            requiredPegsleft = level4AmountOfRequiredPegs;
+            requiredPegsRemaining = level4AmountOfRequiredPegs;
         } else if (whichLevel == 5) {
             currentLevelLayout = Level5;
             whichPowerup = 2;
-            requiredPegsleft = level5AmountOfRequiredPegs;
+            requiredPegsRemaining = level5AmountOfRequiredPegs;
         } else {
             currentLevelLayout = testLevel;
             whichPowerup = 1;
-            requiredPegsleft = testLevelAmountOfRequiredPegs;
+            requiredPegsRemaining = testLevelAmountOfRequiredPegs;
         }
     }
 
@@ -93,13 +85,10 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseMo
     public void setupEntities() {
         addEntity(cursor);
 
-        //TextEntity that shows the current Score
         currentScoreText = new CurrentScoreText(new Coordinate2D(0, 40), "Current Score: " + currentScore);
-        //setSize bigger
         addEntity(currentScoreText);
 
         remainingBallsText = new RemainingBallsText(new Coordinate2D(0, 80), "Balls Remaining: " + remainingBalls);
-        //setSize bigger
         addEntity(remainingBallsText);
 
         cannon = new BallCannon(new Coordinate2D(getWidth() / 2, 50), this, cursor);
@@ -116,7 +105,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseMo
     @Override
     public void onMouseButtonReleased(MouseButton mouseButton, Coordinate2D coordinate2D) {
         if (remainingBalls > 0 && ballsOnScreen == 0) {
-//            remainingBalls--;
+            remainingBalls--;
             remainingBallsText.setText("Balls Remaining: " + remainingBalls);
 
             var angle = cannon.angleTo(cursor);
@@ -124,7 +113,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseMo
             if (distance > 10) {
                 distance = 10;
             }
-            ball = new Ball(new Coordinate2D(getWidth() / 2, 100), this, cursor);
+            ball = new Ball(new Coordinate2D(getWidth() / 2, 100), this);
 
             if (powerupActive) {
                 if (whichPowerup == 1) {
@@ -145,7 +134,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseMo
     }
 
     public void addPowerupBall(Coordinate2D coordinate2D, double speed, double direction) {
-        var tempBall = new Ball(coordinate2D, this, cursor);
+        var tempBall = new Ball(coordinate2D, this);
         tempBall.setDirection(direction);
         tempBall.setSpeed(speed);
         tempBall.setAnchorPoint(AnchorPoint.CENTER_CENTER);
@@ -153,8 +142,8 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseMo
         addEntity(tempBall);
     }
 
-    void levelDone() {
-        if (requiredPegsleft == 0 && ballsOnScreen == 0) {
+    public void levelDone() {
+        if (requiredPegsRemaining == 0 && ballsOnScreen == 0) {
             if (whichLevel == 1) {
                 quaggle.setActiveScene(8);
             } else if (whichLevel == 2) {
@@ -166,7 +155,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseMo
             } else if (whichLevel == 5) {
                 quaggle.setActiveScene(16);
             }
-        } else if (requiredPegsleft > 0 && remainingBalls == 0 && ballsOnScreen == 0) {
+        } else if (requiredPegsRemaining > 0 && remainingBalls == 0 && ballsOnScreen == 0) {
             if (whichLevel == 1) {
                 quaggle.setActiveScene(7);
             } else if (whichLevel == 2) {

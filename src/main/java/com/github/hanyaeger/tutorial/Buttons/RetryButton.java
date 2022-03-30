@@ -2,11 +2,13 @@ package com.github.hanyaeger.tutorial.Buttons;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.tutorial.Quaggle;
+import com.github.hanyaeger.tutorial.Scenes.GameLevel;
 import javafx.scene.input.MouseButton;
 
 public class RetryButton extends Button {
-    private final  Quaggle quaggle;
-    private final  int lastLevel;
+    private final Quaggle quaggle;
+    private final int lastLevel;
+
     public RetryButton(Coordinate2D initialLocation, Quaggle quaggle, String caption, int lastLevel) {
         super(initialLocation, quaggle, caption);
         this.quaggle = quaggle;

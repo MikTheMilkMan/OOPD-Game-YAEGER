@@ -13,14 +13,12 @@ public class RequiredRectanglePeg extends RectanglePeg {
     }
 
     public void onCollision(Collider collider) {
-        remove();
-
+        super.onCollision(collider);
         if(!isHit) {
             isHit = true;
             gameLevel.currentScore += pegScore;
             gameLevel.ball.addToScoreWithBall(pegScore);
-            gameLevel.requiredPegsleft--;
-            System.out.println(gameLevel.requiredPegsleft);
+            gameLevel.requiredPegsRemaining--;
         }
     }
 }

@@ -12,9 +12,8 @@ public class BonusCirclePeg extends CirclePeg {
     }
 
     public void onCollision(Collider collider) {
-        remove();
-
         if(!isHit){
+            super.onCollision(collider);
             isHit = true;
             gameLevel.currentScore += pegScore * 3;
             gameLevel.ball.addToScoreWithBall(pegScore * 3);
