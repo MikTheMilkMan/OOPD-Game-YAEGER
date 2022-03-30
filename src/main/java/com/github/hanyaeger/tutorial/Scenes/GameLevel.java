@@ -84,6 +84,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseMo
 
     @Override
     public void setupScene() {
+        setBackgroundImage("backgrounds/MainMenuBackground.png");
         setBackgroundAudio("audio/LeukLiedje.mp3");
         setBackgroundAudioVolume(0.1);
     }

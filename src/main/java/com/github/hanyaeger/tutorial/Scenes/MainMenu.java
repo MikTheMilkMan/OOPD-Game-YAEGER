@@ -18,16 +18,9 @@ public class MainMenu extends StaticScene {
 
     @Override
     public void setupScene() {
-        setBackgroundAudio("audio/clown_music.mp3");
-
-        //DELETE THIS WHEN TURNING IN PROJECT
-        setBackgroundAudioVolume(0.1);
-        //PLEASE DO NOT FORGET TO DELETE THIS WHEN TURNING IN PROJECT
-        //I BEG OF YOU
-        //P L E A S E
-        //thanks
-
         setBackgroundImage("backgrounds/MainMenuBackground.png");
+        setBackgroundAudio("audio/clown_music.mp3");
+        setBackgroundAudioVolume(0.1);
     }
 
     @Override

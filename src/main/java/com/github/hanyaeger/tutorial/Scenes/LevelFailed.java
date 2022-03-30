@@ -21,7 +21,9 @@ public class LevelFailed extends StaticScene {
 
     @Override
     public void setupScene() {
-
+        setBackgroundImage("backgrounds/MainMenuBackground.png");
+        setBackgroundAudio("audio/LevelFailed.mp3");
+        setBackgroundAudioVolume(0.1);
     }
 
     @Override

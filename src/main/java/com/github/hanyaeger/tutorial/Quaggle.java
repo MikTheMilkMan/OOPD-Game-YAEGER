@@ -41,6 +41,6 @@ public class Quaggle extends YaegerGame {
         addScene(15, new LevelFailed(this, 5));
         addScene(16, new LevelCompleted(this, 6));
 
-        addScene(6, new GameOver(this));
+        addScene(6, new GameDone(this));
     }
 }
