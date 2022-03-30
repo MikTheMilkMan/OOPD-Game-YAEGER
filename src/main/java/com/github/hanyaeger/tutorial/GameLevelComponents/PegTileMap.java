@@ -10,6 +10,9 @@ import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.CirclePegs.*;
 import com.github.hanyaeger.tutorial.GameLevelComponents.Pegs.RectanglePegs.*;
 import com.github.hanyaeger.tutorial.Scenes.GameLevel;
 import javafx.scene.Node;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class PegTileMap extends TileMap implements Collider, Collided {
@@ -45,6 +48,12 @@ public class PegTileMap extends TileMap implements Collider, Collided {
     @Override
     public void onCollision(Collider collider) {
 
+    }
+
+    public void removeTileMapEntity(int location1){
+        List<YaegerEntity> yel = this.get();
+        YaegerEntity toBeRemoved = yel.get(location1);
+        remove(toBeRemoved);
     }
 
     @Override

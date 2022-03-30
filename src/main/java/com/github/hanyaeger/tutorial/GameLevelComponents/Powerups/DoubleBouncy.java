@@ -1,5 +1,9 @@
 package com.github.hanyaeger.tutorial.GameLevelComponents.Powerups;
 
-public class DoubleBouncy implements Powerup {
+import com.github.hanyaeger.tutorial.GameLevelComponents.Ball;
 
+public class DoubleBouncy implements Powerup {
+    public DoubleBouncy(Ball ball){
+        ball.setFrictionConstant(0.004);
+    }
 }

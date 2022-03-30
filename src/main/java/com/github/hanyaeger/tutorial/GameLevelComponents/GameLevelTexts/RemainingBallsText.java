@@ -4,7 +4,7 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.DynamicTextEntity;
 
 public class RemainingBallsText extends DynamicTextEntity {
-    protected RemainingBallsText(Coordinate2D initialLocation) {
-        super(initialLocation);
+    public RemainingBallsText(Coordinate2D initialLocation, String remainingBalls) {
+        super(initialLocation, remainingBalls);
     }
 }

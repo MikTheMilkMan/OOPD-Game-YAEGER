@@ -33,6 +33,6 @@ public class StartButton extends Button {
 
     @Override
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
-
+        quaggle.setActiveScene(1);
     }
 }
